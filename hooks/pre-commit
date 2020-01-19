@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+import unittest
+from inspect import getsourcefile
+import os
+import sys
+
+# recuperaction du chemin de la racine du projet (depuis .git/hook)
+current_path = os.path.abspath(getsourcefile(lambda:0))
+current_dir = os.path.dirname(current_path)
+parent_dir = current_dir[:current_dir.rfind(os.path.sep)]
+parent_parent_dir = parent_dir[:parent_dir.rfind(os.path.sep)]
+sys.path.insert(0, parent_parent_dir)
+
+# permet d'importer mySuperClass
+from sources.mySuperClass import mySuperClass
+
+class TestClass(unittest.TestCase):
+
+      # Test unitaire sur la methode functionTrue de la classe mySuperClass
+      def testSuperClassTrue(self):
+            result = mySuperClass().functionTrue()
+            self.assertEqual(result, True)
+
+      # Test unitaire sur la methode functionReadFile de la classe mySuperClass
+      def testSuperClassReadFile(self):
+            result = mySuperClass().functionReadFile('main')
+            self.assertEqual(result, True)
+
+def main():
+  # execution test -> 1 = KO, 0 = OK
+  tests = unittest.TestLoader().loadTestsFromTestCase(TestClass)
+  exit(0 if unittest.TextTestRunner(verbosity=2).run(tests).wasSuccessful() else 1)
+
+if __name__ == "__main__":
+  main()

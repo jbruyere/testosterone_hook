@@ -3,7 +3,7 @@
 Pour tester l'utilisation du hook
 ---------------------------------
 
-- Copier les fichiers contenu de le fichier ./hook dans .git/hook
+- Copier les fichiers contenu de le fichier ./hooks dans .git/hooks
     `pre-commit` s'execute automatiquement AVANT un `git commit`
     `commit̀` s'execute automatiquement APRES un `git commit`
 - Modifier un fichier, puis l'`add` et le `commit`
@@ -13,7 +13,7 @@ Pour tester l'utilisation du hook
 Pour tester soit même des scripts
 ---------------------------------
 
-- avoir un script (Python, Bash ou autre...) dans le dossier .git/hook
+- avoir un script (Python, Bash ou autre...) dans le dossier .git/hooks
 - son nom définit le moment où le script va être éxecuté
 - Les noms possibles: `applypath-msg`, `commit-msg`, `fsmonitor-watchman`, `post-update`, `pre-applypatch`, `pre-commit`, `pre-push`, `pre-rebase`, `pre-receive`, `prepare-commit-message`, `update`
 
